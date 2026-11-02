@@ -1,3 +1,95 @@
+# Biodiversity Text Classification
+
+This project uses GPT-4o, Llama 3.1, Apertus, and Qwen3 to classify German political texts according to their relevance to biodiversity.
+
+- **0** = Not related to biodiversity
+- **1** = Related to biodiversity
+
+## 1. Installation
+
+```bash
+pip install pandas numpy scikit-learn tqdm openai torch transformers accelerate
+```
+
+## 2. Dataset
+
+The default input dataset is `input_new.csv`, containing:
+
+- `sentence`: German text to classify
+- `label_human`: Human-annotated binary label (0 or 1)
+
+## 3. Configuration
+
+Before running, modify the corresponding parameters in each Python script.
+
+**Prompt version and classification mode:**
+
+```python
+prompt_version = 1
+mode = 'd'
+```
+
+Prompt versions:
+
+- `1`: Original formatting
+- `2`: Additional indentation
+- `3`: Compact formatting
+
+Classification modes:
+
+- `z`: Zero-shot
+- `d`: Domain-specific (biodiversity keywords)
+- `o`: Example-based (one example per class)
+
+**Model selection:**
+
+| Script | Model |
+|---|---|
+| `gpt-improved.py` | GPT-4o / GPT-4o-mini |
+| `llama-predict.py` | Llama-3.1-8B-Instruct |
+| `apertus-predict.py` | Apertus-8B-Instruct-2509 |
+| `qwen-predict.py` | Qwen3-32B |
+
+For Qwen, the model size can be configured using:
+
+```python
+size = '32B'
+MODEL_NAME = f"Qwen/Qwen3-{size}"
+```
+
+For GPT, configure your OpenAI API key securely:
+
+```python
+import os
+OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+```
+
+## 4. Run
+
+Run the corresponding script:
+
+```bash
+python gpt-improved.py
+python llama-predict.py
+python apertus-predict.py
+python qwen-predict.py
+```
+
+Run only the script for the selected model. Local models require sufficient hardware resources, especially Qwen3-32B.
+
+The scripts run experiments with seeds 421–430.
+
+## 5. Results
+
+Results are saved in the `results-dec/` directory.
+
+Each experiment generates:
+
+- **Predictions CSV:** Predicted labels and classification correctness
+- **Summary JSON:** Accuracy, precision, recall, F1-score, and confusion matrix
+
+Results can be compared across models, prompt versions, classification modes, and random seeds.
+
 # PALetter Example 2
 
 PALetter example 2 uses different models to classify political manifestos into Left (0) and Right (1) and evaluate prediction stability across different prompt formats.
