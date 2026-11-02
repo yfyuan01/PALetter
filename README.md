@@ -81,7 +81,7 @@ Three classification modes are supported:
 | `gpt-improved.py` | `gpt-4o` |
 | `llama-predict.py` | `meta-llama/Llama-3.1-8B-Instruct` |
 | `apertus-predict.py` | `swiss-ai/Apertus-8B-Instruct-2509` |
-| `qwen-predict.py` | `Qwen/Qwen3-32B` |
+| `qwen-predict.py` | `Qwen/Qwen3-32B/Qwen3-8B/...` |
 
 Change `MODEL_NAME` in the relevant script to select a model.
 
@@ -92,18 +92,13 @@ size = '32B'
 MODEL_NAME = f"Qwen/Qwen3-{size}"
 ```
 
-For GPT-4o, configure your OpenAI API key. We recommend using an environment variable rather than hardcoding credentials:
+For GPT-4o, **configure your OpenAI API key in the code**. We recommend using an environment variable rather than hardcoding credentials:
 
 ```python
 import os
 OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 ```
 
-Set the variable in your terminal before running:
-
-```bash
-export OPENAI_API_KEY="YOUR_API_KEY"
-```
 
 ### Other settings
 
