@@ -44,7 +44,7 @@ MODEL_NAME = "gpt-4o" (or change to other models)
 TEXT_COLUMN = "text_en" #(change to TEXT_COLUMN = "text" when running sampled_4to1.csv/manifesto_with_text_en_complete_updated.csv)
 RILE_COLUMN = "rile"
 
-temperature = 0.2
+temperature = 0.0
 max_text_chars = 6000
 ```
 
